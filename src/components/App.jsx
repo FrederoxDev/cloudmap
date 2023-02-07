@@ -6,7 +6,7 @@ import Editor from '../pages/Editor';
 import NotFound from '../pages/NotFound';
 import FileView from '../pages/FileView';
 import HomePage from '../pages/HomePage';
-import { AuthProvider, useAuth } from '../contexts/UserContext';
+import { AuthProvider } from '../contexts/UserContext';
 import PrivateRoute from './PrivateRoute';
 import Navbar from './Navbar';
 

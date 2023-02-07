@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React, { useEffect, useState } from 'react'
 import { auth } from "../firebase"
 import { Link, useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ const SignUp = () => {
         setLoading(true);
         setError("");
 
-        if (password != passwordConfirm) {
+        if (password !== passwordConfirm) {
             setLoading(false);
             return setError("Passwords do not match!")
         }
@@ -31,9 +31,9 @@ const SignUp = () => {
                 navigate("/editor/")
             })
             .catch((e) => {
-                if (e.code == "auth/email-already-in-use") setError("Account already exists")
-                else if (e.code == "auth/weak-password") setError("Weak Password")
-                else if (e.code == "auth/invalid-email") setError("Invalid Email")
+                if (e.code === "auth/email-already-in-use") setError("Account already exists")
+                else if (e.code === "auth/weak-password") setError("Weak Password")
+                else if (e.code === "auth/invalid-email") setError("Invalid Email")
                 else setError(e.code)
                 console.log(e)
             })
@@ -43,7 +43,7 @@ const SignUp = () => {
     useEffect(() => {
         if (userCredentials == null) return;
         navigate("/editor/")
-    }, [userCredentials])
+    }, [userCredentials, navigate])
 
     return (
         <div className="flex items-center h-full justify-evenly">

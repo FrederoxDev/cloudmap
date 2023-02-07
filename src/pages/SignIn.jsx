@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { auth } from "../firebase"
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/UserContext';
@@ -24,8 +24,8 @@ const SignIn = () => {
                 navigate("/editor/")
             })
             .catch((e) => {
-                if (e.code == "auth/wrong-password") setError("Wrong Password!")
-                else if (e.code == "auth/user-not-found") setError("Email does not have an account")
+                if (e.code === "auth/wrong-password") setError("Wrong Password!")
+                else if (e.code === "auth/user-not-found") setError("Email does not have an account")
                 else setError(e.code)
                 console.log(e)
             })
@@ -33,9 +33,9 @@ const SignIn = () => {
     }
 
     useEffect(() => {
-        if (userCredentials == null) return;
+        if (userCredentials === null) return;
         navigate("/editor/")
-    }, [userCredentials])
+    }, [userCredentials, navigate])
 
     return (
         <div className="flex items-center h-full justify-evenly">

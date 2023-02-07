@@ -1,6 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { useAuth } from "../contexts/UserContext";
-import { DocumentReference, doc, getDoc } from "firebase/firestore"
+import { doc, getDoc } from "firebase/firestore"
 import { db } from "../firebase";
 import { useEffect, useState } from "react";
 
@@ -22,7 +21,7 @@ const Editor = () => {
         }).finally(() => {
             setLoading(false)
         })
-    }, [doc])
+    }, [docRef])
 
     if (loading) return <p>Loading...</p>
     if (error) return (

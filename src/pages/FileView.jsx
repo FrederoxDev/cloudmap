@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import storage, { auth, collectionRef, db } from "../firebase"
+import { Link } from "react-router-dom";
+import { db } from "../firebase"
 import { useAuth } from '../contexts/UserContext';
 import { collection, getDocs, where, query, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import NewFile from "../components/NewFile";
 import DeleteIcon from "../svgs/delete";
 import RenameIcon from "../svgs/rename";
 import DownloadIcon from "../svgs/download";
-import SignIn from "./SignIn";
 
 const FileView = () => {
     const [docs, setDocs] = useState([]);
@@ -43,7 +42,7 @@ const FileView = () => {
         if (window.confirm("Are you sure? Cannot be undone!")) {
             deleteDoc(doc(db, "mindmaps", id))
             .then(() => {
-                setDocs(docs.filter(doc => doc.id != id))
+                setDocs(docs.filter(doc => doc.id !== id))
             })
             .catch((e) => console.error(e))
         }
@@ -51,10 +50,10 @@ const FileView = () => {
 
     const renameFile = (id) => {
         const newName = window.prompt("New File Name")
-        if (newName == null) return;
+        if (newName === null) return;
 
         var docsCopy = docs.map(doc => {
-            if (doc.id == id) doc.name = newName; 
+            if (doc.id === id) doc.name = newName; 
             return doc
         });
         setDocs(docsCopy)
