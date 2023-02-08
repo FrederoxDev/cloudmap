@@ -1,6 +1,4 @@
-name: Build
-
-# Controls when the action will run. 
+name: Build Web App
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
@@ -8,8 +6,21 @@ on:
   pull_request:
     branches: [ master ]
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+    group: 'pages'
+    cancel-in-progress: true
+
 jobs:
     build-and-deploy:
+        environment:
+            name: github-pages
         runs-on: ubuntu-latest
         steps:
             - name: Checkout 🛎️
@@ -25,6 +36,8 @@ jobs:
                   cache: 'npm'
 
             - name: Install and Build 🔧
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
                   npm install
                   NODE_OPTIONS=--max_old_space_size=4096 npm run build
