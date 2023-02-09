@@ -28,7 +28,6 @@ jobs:
 
             - name: Setup Pages 📃
               uses: actions/configure-pages@v2
-
             - name: Install Node 🧰
               uses: actions/setup-node@v3
               with:
