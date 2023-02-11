@@ -12,6 +12,15 @@ permissions:
     pages: write
     id-token: write
 
+env:
+  GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+  REACT_APP_FIREBASE_API_KEY: ${{ env.REACT_APP_FIREBASE_API_KEY }}
+  REACT_APP_FIREBASE_AUTHDOMAIN: ${{ env.REACT_APP_FIREBASE_AUTHDOMAIN }}
+  REACT_APP_FIREBASE_PROJECT_ID: ${{ env.REACT_APP_FIREBASE_PROJECT_ID }}
+  REACT_APP_FIREBASE_STORAGE_BUCKET: ${{ env.REACT_APP_FIREBASE_STORAGE_BUCKET }}
+  REACT_APP_FIREBASE_MESSAGING_SENDER_ID: ${{ env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID }}
+  REACT_APP_FIREBASE_APP_ID: ${{ env.REACT_APP_FIREBASE_APP_ID }}
+
 # Allow one concurrent deployment
 concurrency:
     group: 'pages'
@@ -21,6 +30,7 @@ jobs:
     build-and-deploy:
         environment:
             name: github-pages
+            
         runs-on: ubuntu-latest
         steps:
             - name: Checkout 🛎️
@@ -28,6 +38,7 @@ jobs:
 
             - name: Setup Pages 📃
               uses: actions/configure-pages@v2
+
             - name: Install Node 🧰
               uses: actions/setup-node@v3
               with:
@@ -45,7 +56,8 @@ jobs:
                   REACT_APP_FIREBASE_APP_ID: ${{ env.REACT_APP_FIREBASE_APP_ID }}
               run: |
                   npm install
-                  NODE_OPTIONS=--max_old_space_size=4096 npm run build
+                  npm run build
+
             - name: Upload artifact ⬆️
               uses: actions/upload-pages-artifact@v1
               with:
