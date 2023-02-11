@@ -64,6 +64,9 @@ const SignIn = () => {
                         <input type="password" className='input input-bordered w-full max-w-xs' required
                             value={password} onChange={(e) => setPassword(e.target.value)}
                         />
+                        <label className="label">
+                            <Link to="/forgot-password" className="label-text-alt link">Forgot Password?</Link>
+                        </label>
 
                         <button className="btn w-full mt-3" type="submit" disabled={loading}>Sign In</button>
                     </form>

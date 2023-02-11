@@ -35,7 +35,7 @@ jobs:
                   cache: 'npm'
 
             - name: Install and Build 🔧
-              env:
+              env: 
                   GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
                   REACT_APP_FIREBASE_API_KEY: ${{ env.REACT_APP_FIREBASE_API_KEY }}
                   REACT_APP_FIREBASE_AUTHDOMAIN: ${{ env.REACT_APP_FIREBASE_AUTHDOMAIN }}

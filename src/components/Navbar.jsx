@@ -15,7 +15,7 @@ const Navbar = () => {
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">
-                    <li><Link to="editor">File</Link></li>
+                    <li><Link to="editor">Files</Link></li>
                     <li>
                         <select data-choose-theme className="select select-bordered">
                             <option disabled value="">Theme</option>

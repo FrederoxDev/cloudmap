@@ -89,7 +89,7 @@ const FileView = () => {
                                     <div className="tooltip" data-tip="Rename">
                                         <button className="fill-base-content hover:fill-accent-focus mr-4" onClick={() => renameFile(doc.id)}><RenameIcon /></button>
                                     </div>
-                                    <div className="tooltip" data-tip="Download">
+                                    <div className="tooltip" data-tip="Download Copy">
                                         <button className="fill-base-content hover:fill-accent-focus mr-4" onClick={() => console.log(doc.id)}><DownloadIcon /></button>
                                     </div>
                                 </td>

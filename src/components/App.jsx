@@ -1,6 +1,7 @@
 import React from 'react';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
+import ForgotPassword from '../pages/ForgotPassword';
 import { Route, Routes } from "react-router-dom";
 import Editor from '../pages/Editor';
 import NotFound from '../pages/NotFound';
@@ -18,6 +19,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
         {/* Private Routes will redirect to login if signed out */}
         <Route path="/editor" element={<PrivateRoute />}>

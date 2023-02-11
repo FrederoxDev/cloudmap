@@ -1,11 +1,11 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore"
 import { db } from "../firebase";
 import { useEffect, useState } from "react";
 
 const Editor = () => {
     const { id } = useParams();
-    const docRef = doc(db, "mindmaps", id);
+    // eslint-disable-next-line
     const [mindmap, setMindmap] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("")
@@ -14,14 +14,16 @@ const Editor = () => {
         setLoading(true)
         setError("")
 
-        getDoc(docRef).then((snapshot) => {
+        getDoc(doc(db, "mindmaps", id)).then((snapshot) => {
             setMindmap(snapshot.data())
         }).catch(err => {
             setError(err.code)
         }).finally(() => {
             setLoading(false)
         })
-    }, [docRef])
+
+        console.log("Fetching doc")
+    }, [id])
 
     if (loading) return <p>Loading...</p>
     if (error) return (
@@ -35,13 +37,7 @@ const Editor = () => {
 
     return (
         <>
-            <div>{mindmap && <p>{JSON.stringify(mindmap)}</p>}</div>
-
-            <div>
-                <p><kbd className="kbd kbd-sm">ctrl + S</kbd> Save</p>
-            </div>
-
-            <Link to="/editor" className="link">Back to files</Link>
+            <canvas></canvas>
         </>
     )
 }
